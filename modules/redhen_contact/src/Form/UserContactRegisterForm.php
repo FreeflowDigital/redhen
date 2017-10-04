@@ -22,12 +22,17 @@ use Drupal\user\Entity\User;
 class UserContactRegisterForm extends RegisterForm {
 
   /**
-   * @var User;
+   * The Redhen Contact entity.
+   *
+   * @var \Drupal\redhen_contact\ContactInterface
    */
-  private $userEntity;
-
   private $redhenEntity;
 
+  /**
+   * Redhen settings factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
   private $redhenConfig;
 
   /**
@@ -49,8 +54,10 @@ class UserContactRegisterForm extends RegisterForm {
    */
   protected function init(FormStateInterface $form_state) {
     $this->redhenConfig = $this->config('redhen_contact.settings');
-    // TODO: fix bundle.
-    $this->redhenEntity = $this->entityManager->getStorage('redhen_contact')->create(['type' => 'contact']);
+    $redhen_entity_bundle = $this->redhenConfig->get('registration_type');
+    $this->redhenEntity = $this->entityManager
+      ->getStorage('redhen_contact')
+      ->create(['type' => $redhen_entity_bundle]);
     parent::init($form_state);
   }
 
@@ -64,7 +71,7 @@ class UserContactRegisterForm extends RegisterForm {
     // Add Redhen Contact form first so that the user display will override.
     $this->contactForm($form, $form_state);
     $form = parent::form($form, $form_state);
-    return $form;
+     return $form;
   }
 
   /**
