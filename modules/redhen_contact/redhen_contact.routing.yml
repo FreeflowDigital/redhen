@@ -5,3 +5,5 @@ redhen_contact.config.contact_form:
     _title: 'Contacts'
   requirements:
     _permission: 'administer contact entities'
+route_callbacks:
+  - '\Drupal\redhen_contact\Routing\UserEditRoutes::routes'

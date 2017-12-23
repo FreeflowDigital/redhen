@@ -159,7 +159,6 @@ function redhen_contact_entity_type_build(array &$entity_types) {
   // Check whether we should create a Contact on User registration.
   if ($config->get('connect_users')) {
     //$entity_types['user']->setFormClass('default', 'Drupal\user\RegisterForm');
-    //$entity_types['user']->setFormClass('register', 'Drupal\hfny_volunteer\Form\VolunteerForm');
     $entity_types['user']->setFormClass('register', 'Drupal\redhen_contact\Form\UserContactRegisterForm');
   }
 }

@@ -119,10 +119,15 @@ class ContactSettingsForm extends ConfigFormBase {
         ),
       ),
       'embed_on_user_form' => array(
-        '#type' => 'checkbox',
+        '#type' => 'select',
         '#title' => t('Embed RedHen Contact fields on the User edit form'),
-        '#description' => t('If checked, the RedHen Contact tab on users will be removed, and the Contact edit fields will instead be attached to the bottom of the User Edit form.'),
+        '#description' => t('Do not embed: Redhen Contact will appear as a separate tab. Simple Embed: Redhen Contact will appear in a fieldset. Advanced embed: Redhen Contact fields will be customizable on the User form view mode display.'),
         '#default_value' => $config->get('embed_on_user_form'),
+        '#options' => [
+          0 => $this->t('Do not embed'),
+          1 => $this->t('Simple embed'),
+          2 => $this->t('Advanced embed'),
+        ],
         '#states' => array(
           'visible' => array(
             ':input[name="connect_users"]' => array('checked' => TRUE),
