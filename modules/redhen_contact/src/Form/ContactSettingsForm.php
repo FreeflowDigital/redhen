@@ -47,7 +47,7 @@ class ContactSettingsForm extends ConfigFormBase {
 
     // Contacts must be connected to Users if we're going to embed the Contact
     // fields on the User form.
-    $embed_on_user_form = $form_state->getValue('connect_users') && $form_state->getValue('embed_on_user_form');
+    $embed_on_user_form = $form_state->getValue('connect_users') ? $form_state->getValue('embed_on_user_form') : FALSE;
 
     // Require unique email if we're connecting Contacts to Users.
     $unique_email = $connect_users || $form_state->getValue('unique_email');
